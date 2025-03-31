@@ -8,7 +8,6 @@ class ReplyController {
         $this->db_controller = new DBController("reply");
     }
 
-    // error_log(print_r($data, TRUE));
     public function List($id) {
         $data = $this->db_controller->list();
         $candidates = [];
@@ -17,8 +16,6 @@ class ReplyController {
                 $candidates[] = $reply;
             }
         }
-
-        error_log(print_r($candidates, TRUE));
         return $candidates;
     }
 
