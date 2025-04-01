@@ -5,6 +5,7 @@ require __DIR__."/../functions.php";
 
 use Controllers\DBController;
 use Controllers\ReplyController;
+
 header('Content-Type: application/json');
 
 // Allow Cross-Origin requests (optional, for development purposes)
@@ -23,19 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
 $id = $_GET['id'] ?? null;
+
 //This kind of transformer would be useful elsewhere
 $response = [
-    'status' => 'success',
     'method' => $method,
     'params' => $input,
-    'message' => ''
 ];
 
 // Handle different HTTP methods
 switch ($method) {
     case 'GET':
         if ($id) {
-            $response['message'] = 'Fetched replys.';
             $data = $controller->list($id);
         }
         $response['data'] = $data;
@@ -43,7 +42,6 @@ switch ($method) {
 
     case 'POST':
         $response['data'] = $controller->create($input);
-        $response['message'] = 'Reply created.';
         break;
     default:
         break;

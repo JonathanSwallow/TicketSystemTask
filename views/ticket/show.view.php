@@ -76,7 +76,6 @@
         fetchTicket();
     });
 
-    //Ticket Stuff
     $('#UpdateTicketForm').submit(function (e) {
         e.preventDefault();
 
@@ -136,7 +135,6 @@
     }
 
 
-    //When we hit the page.
     function renderReplies(replies) {
         repliesBody.empty();
         replies.forEach(reply => {
@@ -154,9 +152,8 @@
         repliesBody.append(row);
     }
 
-    //Reply Stuff
     $('#CreateReplyForm').submit(function (e) {
-            e.preventDefault(); // prevent default form submission
+            e.preventDefault();
 
             const formData = {
                 name: $('#name').val(),

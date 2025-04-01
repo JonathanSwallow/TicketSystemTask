@@ -32,7 +32,7 @@
 </main>
 <script>
     $('#CreateTicketForm').submit(function (e) {
-        e.preventDefault(); // prevent default form submission
+        e.preventDefault();
 
         const formData = {
             title: $('#title').val(),

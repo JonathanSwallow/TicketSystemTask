@@ -26,21 +26,17 @@ $input = json_decode(file_get_contents('php://input'), true);
 $id = $_GET['id'] ?? null;
 //This kind of transformer would be useful elsewhere
 $response = [
-    'status' => 'success',
     'method' => $method,
     'params' => $input,
-    'message' => ''
 ];
 
 // Handle different HTTP methods
 switch ($method) {
     case 'GET':
         if ($id) {
-            $response['message'] = 'Fetched ticket.';
             $data = $controller->show($id);
         }
         else {
-            $response['message'] = 'Fetched tickets.';
             $data = $controller->list($input);
         }
         $response['data'] = $data;
@@ -48,17 +44,14 @@ switch ($method) {
 
     case 'POST':
         $data = $controller->create($input);
-        $response['message'] = 'Ticket created.';
         break;
 
     case 'PUT':
         $data = $controller->update($id, $input);
-        $response['message'] = 'Ticket updated.';
         break;
 
     case 'DELETE':
         $data = $controller->delete($id);
-        $response['message'] = 'Ticket deleted.';
         break;
 
     default:
