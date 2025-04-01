@@ -1,12 +1,6 @@
 <?php
 namespace Controllers;
-
-class ReplyController {
-    private $db_controller;
-
-    function __construct() {
-        $this->db_controller = new DBController("reply");
-    }
+class ReplyController extends ModelController {
 
     public function List($id) {
         $data = $this->db_controller->list();

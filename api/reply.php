@@ -3,6 +3,7 @@
 require __DIR__."/../autoload.php";
 require __DIR__."/../functions.php";
 
+use Controllers\DBController;
 use Controllers\ReplyController;
 header('Content-Type: application/json');
 
@@ -12,7 +13,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 
-$controller = new ReplyController();
+$controller = new ReplyController(new DBController("reply"));
 
 // Handle OPTIONS requests (for preflight CORS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

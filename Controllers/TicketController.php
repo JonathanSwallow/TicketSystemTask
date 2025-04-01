@@ -1,14 +1,7 @@
 <?php
 namespace Controllers;
-
-class TicketController {
-    private $db_controller;
-
-    function __construct() {
-        $this->db_controller = new DBController("ticket");
-    }
+class TicketController extends ModelController {
     public function List($params) {
-        //we can use $params filter in here
         $data = $this->db_controller->list();
         return $data;
     }
@@ -18,7 +11,6 @@ class TicketController {
     }
 
     public function create($data) {
-        //Would be better as a model
         $new_ticket = [
             "title" => $data["title"],
             "description" => $data["description"],
@@ -30,8 +22,6 @@ class TicketController {
         $this->db_controller->add($new_ticket);
     }
 
-    //Would be sick if we had some fillable shit to validate stuff.
-    //ran out of time to get some model going.
     public function update($id, $params) {
         $ticket = $this->show($id);
         $ticket['description'] = $params['description'] ?? "";
@@ -39,6 +29,7 @@ class TicketController {
         $ticket['status'] = $params['status'] ?? "";
         $this->db_controller->update($id, $ticket);
     }
+
     public function delete($id) {
         $this->db_controller->remove($id);
     }
