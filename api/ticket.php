@@ -4,6 +4,8 @@ require __DIR__."/../autoload.php";
 require __DIR__."/../functions.php";
 
 use Controllers\TicketController;
+use Controllers\DBController;
+
 header('Content-Type: application/json');
 
 // Allow Cross-Origin requests (optional, for development purposes)
@@ -12,7 +14,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 
-$controller = new TicketController();
+$controller = new TicketController(new DBController("ticket"));
 
 // Handle OPTIONS requests (for preflight CORS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
